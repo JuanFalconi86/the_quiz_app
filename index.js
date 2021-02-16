@@ -9,13 +9,18 @@ let listOfQuestions = [
   {
     nameOfQuestion: "Question number 1 ?",
     answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-    correctAnswer: "answer D",
+    correctAnswer: 2,
   },
 
   {
     nameOfQuestion: "Question number 2 ?",
     answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-    correctAnswer: "answer B",
+    correctAnswer: 2,
+  },
+  {
+    nameOfQuestion: "Question number 3 ?",
+    answerOptions: ["answer A", "answer B", "answer C", "answer D"],
+    correctAnswer: 2,
   },
 ];
 
@@ -33,9 +38,14 @@ function showQuestion(question) {
   });
 }
 
+nextButton.onclick = () => {
+  showQuestion(listOfQuestions[currentQuestionIndex + 1]);
+};
+
+
 function rightOrWrong(question) {
-    options.forEach(option => {
-        if (option.innerHTML === question.correctAnswer) {
+    options.forEach((option, index, arr) => {
+        if (question.answerOptions[index] === question.correctAnswer) {
           option.classList.add("right");
           console.log("Correct Answer!");
         } else {
@@ -44,6 +54,9 @@ function rightOrWrong(question) {
       })}
 
 
+options.forEach(option => {
+    option.onclick = () => {console.log('hello')}
+})
 
 
 // function nextQuestion(question) {
@@ -57,8 +70,3 @@ showQuestion(listOfQuestions[currentQuestionIndex]);
 //     showQuestion(listOfQuestions[currentQuestionIndex]);
 
 // }, 7000);
-
-
-nextButton.onclick = () => {
-    showQuestion(listOfQuestions[currentQuestionIndex +1]);
-};
