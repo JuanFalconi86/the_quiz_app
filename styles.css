@@ -15,7 +15,7 @@ header {
     padding: 20px 10px ;
     margin-top: 0px;
     width: 100%;
-    color: rgba(255, 255, 255, 0.808);
+    color: blanchedalmond;
     background-color: rgb(26, 25, 25);
     
 }
@@ -30,7 +30,7 @@ header {
 }
 
 #questionDiv {
-    padding: 20px 120px;
+    padding: 20px 150px;
     background-color: rgb(6, 98, 168);
     color: white;
     text-align: center;
