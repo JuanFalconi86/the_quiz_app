@@ -7,24 +7,34 @@ let currentQuestionIndex = 0;
 
 let listOfQuestions = [
   {
-    nameOfQuestion: "Question number 1 ?",
-    answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-    correctAnswer: "answer A",
+    nameOfQuestion: "Who directed the movie Magnolia ?",
+    answerOptions: [
+      "Paul Thomas Anderson",
+      "Steven Spielberg",
+      "Martin Scorsese",
+      "Alfonso Cuaron",
+    ],
+    correctAnswer: "Paul Thomas Anderson",
   },
   {
-    nameOfQuestion: "Question number 2 ?",
-    answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-    correctAnswer: "answer B",
+    nameOfQuestion: "What TV show was created by Larry David ?",
+    answerOptions: ["Friends", "The Office", "Seinfield", "Oz"],
+    correctAnswer: "Seinfield",
   },
   {
-    nameOfQuestion: "Question number 3 ?",
-    answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-    correctAnswer: "answer B",
+    nameOfQuestion: "Where does the series The Wire take place ?",
+    answerOptions: ["Seattle", "Washington DC", "Austin", "Baltimore"],
+    correctAnswer: "Baltimore",
   },
   {
-    nameOfQuestion: "Question number 4 ?",
-    answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-    correctAnswer: "answer B",
+    nameOfQuestion: "Who created Twin Peaks ? ",
+    answerOptions: [
+      "David Lynch",
+      "David Benioff",
+      "JJ Abrams",
+      "Damon Lindelof",
+    ],
+    correctAnswer: "David Lynch",
   },
 ];
 
@@ -63,9 +73,9 @@ function rightOrWrong(oneQuestion, option) {
 
 //THIS ADDS EVENT LISTENER 
 options.forEach((option) => {
+  // option.addEventListener('click', rightOrWrong(listOfQuestions[currentQuestionIndex]), option)
   option.onclick = () => {
-    rightOrWrong(listOfQuestions[currentQuestionIndex], option)
-    }
+    rightOrWrong(listOfQuestions[currentQuestionIndex], option)}
   });
 
 
