@@ -38,5 +38,25 @@ header {
     border-radius: 2px;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
 }
 
+.right {
+    background-color: rgb(39, 221, 39);
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.wrong {
+    background-color: red;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}

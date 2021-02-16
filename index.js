@@ -1,18 +1,20 @@
 let questionDiv = document.getElementById("questionDiv")
 let options = [...document.getElementsByClassName("option")]
-let score = document.querySelector(".score") //recupero la div de score, luego voy a ir aumentando el score
+let scoreText= document.querySelector(".score") //recupero la div de score, luego voy a ir aumentando el score
+let score = 0
+let nextButton = document.getElementById("next-question")
 
 
-var question1 = {
+let question1 = {
         nameOfQuestion: "Question number 1 ?",
         answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-        correctAnswer: 0
+        correctAnswer: "answer D"
     }
 
-var question2 = {
+let question2 = {
         nameOfQuestion: "Question number 2 ?",
         answerOptions: ["answer A", "answer B", "answer C", "answer D"],
-        correctAnswer: 2
+        correctAnswer: "answer B"
     }
 
 
@@ -25,21 +27,38 @@ var question2 = {
 
 
 
-function showNewQuestion(question) {
+function showQuestion(question) {
     questionDiv.innerHTML = question.nameOfQuestion;
-
     options.forEach((option, index,arr)  => {
     option.innerHTML = question.answerOptions[index]
-    option.style.cursor = "pointer"
-})
+     rightOrWrong(question)       
+})}
+
+
+function rightOrWrong (question){    
+   options.forEach(
+     (option, index) =>
+       (option.onclick = function () {
+         if (option.innerHTML === question.correctAnswer) {
+           option.classList.add("right");
+           console.log("Correct Answer!")
+
+         } else {
+             option.classList.add("wrong")
+            //  option.classList.remove("option")
+             
+         }
+       })
+   )
+       
 }
 
-function rightOrWrong (){}
 
-function nextQuestion (){}
+function nextQuestion (question){
+    nextButton.onclick = showNewQuestion(question)
+}
 
-
-
+showQuestion(question1)
 
 
 
