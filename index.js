@@ -30,32 +30,35 @@ function showQuestion(question) {
   questionDiv.innerHTML = question.nameOfQuestion;
   options.forEach((option, index, arr) => {
     option.innerHTML = question.answerOptions[index];
-    rightOrWrong(question);
   });
 }
 
 function rightOrWrong(question) {
-  options.forEach(
-    (option, index) =>
-      (option.onclick = function () {
+    options.forEach(option => {
         if (option.innerHTML === question.correctAnswer) {
           option.classList.add("right");
           console.log("Correct Answer!");
         } else {
           option.classList.add("wrong");
-          //  option.classList.remove("option")
         }
-      })
-  );
-}
+      })}
 
-function nextQuestion(question) {
-  nextButton.onclick = showNewQuestion(question);
-}
+
+
+
+// function nextQuestion(question) {
+//   nextButton.onclick = showNewQuestion(question);
+// }
+
 
 showQuestion(listOfQuestions[currentQuestionIndex]);
-setTimeout(() => {
-    currentQuestionIndex++
-    showQuestion(listOfQuestions[currentQuestionIndex]);
+// setTimeout(() => {
+//     currentQuestionIndex++
+//     showQuestion(listOfQuestions[currentQuestionIndex]);
 
-}, 7000);
+// }, 7000);
+
+
+nextButton.onclick = () => {
+    showQuestion(listOfQuestions[currentQuestionIndex +1]);
+};
