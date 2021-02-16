@@ -50,7 +50,7 @@ nextButton.onclick = () => {
 
 // THIS FUNCTION WILL SHOW WHICH ANSWER IS RIGHT OR WRONG
 function rightOrWrong(oneQuestion, option) {
-
+    
     let selectedAnswer = option.innerHTML;
     if (selectedAnswer === oneQuestion.correctAnswer) {
       option.classList.add("right");
@@ -61,11 +61,11 @@ function rightOrWrong(oneQuestion, option) {
     }
 }
 
+//THIS ADDS EVENT LISTENER 
 options.forEach((option) => {
   option.onclick = () => {
     rightOrWrong(listOfQuestions[currentQuestionIndex], option)
     }
-    // rightOrWrong(listOfQuestions[currentQuestionIndex]);
   });
 
 
