@@ -9,18 +9,28 @@ h1, h2  {
     padding: 50px;
 }
 
+.welcome-title {
+    font-size: 40px;
+}
+
 header {
     text-align: center;
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
     border: 2px solid black;
     font-size: 30px;
     background-color: orange;
     padding: 20px;
     width: 11%;
+    border-radius: 10px;
+}
+
+a:hover {
+    background-color: black;
+    color: orange;
 }
 
 .container {
@@ -29,3 +39,4 @@ a {
     justify-content: center;
     align-items: center;
 }
+
