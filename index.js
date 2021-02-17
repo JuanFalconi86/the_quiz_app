@@ -4,7 +4,7 @@ let scoreText = document.querySelector(".score"); //recupero la div de score, lu
 let score = 0;
 let nextButton = document.getElementById("next-question");
 let currentQuestionIndex = 0;
-let totalScore = []
+let endButton = document.getElementById("end-button")
 
 let listOfQuestions = [
   {
@@ -43,44 +43,63 @@ let listOfQuestions = [
 
 // THIS FUNCTION WILL SHOW A QUESTION
 function showQuestion(question) {
+  checkIfLast(question);
+
   questionDiv.innerHTML = question.nameOfQuestion;
   options.forEach((option, index, arr) => {
     option.innerHTML = question.answerOptions[index];
     option.parentElement.style.pointerEvents = "auto"; //here, I am "reseting" the pointer events so when I see the question, I can click everywhere
     option.classList.remove("right"); //again, reseting the class, because in the previous question, there is a class applied (because someone clicked)
-    option.classList.remove("wrong") //the same that above
+    option.classList.remove("wrong"); //the same that above
   });
+}
+
+// THIS FUNCTION WILL CHECK IF THE QUESTION IS THE LAST ONE
+
+function checkIfLast(question) {
+  if (listOfQuestions.indexOf(question) === listOfQuestions.length - 1) {
+    replaceNextButton()
+  }
+}
+
+// THIS FUNCTION WILL REPLACE THE NEXT BUTTON FOR ANOTHER BUTTON
+
+function replaceNextButton() {
+  nextButton.style.visibility = "hidden"
+  endButton.style.visibility = "visible"
 }
 
 //THIS FUNCTION WILL LET GO TO THE NEXT QUESTION
 nextButton.onclick = () => {
-  showQuestion(listOfQuestions[(currentQuestionIndex += 1)])
+  showQuestion(listOfQuestions[(currentQuestionIndex += 1)]);
 };
-
 
 // THIS FUNCTION WILL SHOW WHICH ANSWER IS RIGHT OR WRONG
 function rightOrWrong(oneQuestion, option) {
   option.parentElement.style.pointerEvents = "none";
-    let selectedAnswer = option.innerHTML;
-    if (selectedAnswer === oneQuestion.correctAnswer) {
-      option.classList.add("right");
-      score ++
-      alert("Correct answer!! Nicely done")
-    } else {
-      option.classList.add("wrong");
-      console.log('incrorrect')
-      alert(`Nop, wrong answer. The correct answer was ${oneQuestion.correctAnswer} `)
-    } 
+  let selectedAnswer = option.innerHTML;
+  if (selectedAnswer === oneQuestion.correctAnswer) {
+    option.classList.add("right");
+    score++;
+    scoreText.innerHTML = `Ton score est de ${score} points pour l'instant`
+    alert("Correct answer!! Nicely done");
+  } else {
+    option.classList.add("wrong");
+    console.log("incrorrect");
+    alert(
+      `Nop, wrong answer. The correct answer was ${oneQuestion.correctAnswer} `
+    );
+  }
 }
-
 
 //THIS ADDS EVENT LISTENER  THAT ENABLES TO CLICK AND SET THE RIGHT OR WRONG IN AN OPTION
 options.forEach((option) => {
   option.onclick = () => {
-    rightOrWrong(listOfQuestions[currentQuestionIndex], option)}  
-  })
+    rightOrWrong(listOfQuestions[currentQuestionIndex], option);
+  };
+});
 
-  // UUNE AUTRE ALTERNATIVE
+// UUNE AUTRE ALTERNATIVE
 // function onOptionClicked(event) {
 //   rightOrWrong(listOfQuestions[currentQuestionIndex], event.target);
 //   options.forEach((option, index, arr) => {
@@ -88,10 +107,10 @@ options.forEach((option) => {
 //   });
 // }
 
+//CREATE A FUNCTION THAT ADDS A BUTTON AND SENDS TO A FINAL PAGE
 
 showQuestion(listOfQuestions[currentQuestionIndex]);
-
-
+endButton.style.visibility = "hidden"
 
 //THIS IS A SET TIMEOUT FUNCTION
 // setTimeout(() => {
