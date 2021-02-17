@@ -50,14 +50,17 @@ function showQuestion(question) {
   questionDiv.innerHTML = question.nameOfQuestion;
   options.forEach((option, index, arr) => {
     option.innerHTML = question.answerOptions[index];
+    option.parentElement.style.pointerEvents = "auto";
+    option.classList.remove("right");
+    option.classList.remove("wrong")
   });
 }
 
 //THIS FUNCTION WILL LET GO TO THE NEXT QUESTION
 nextButton.onclick = () => {
-  showQuestion(listOfQuestions[(currentQuestionIndex += 1)]);
-  
+  showQuestion(listOfQuestions[(currentQuestionIndex += 1)])
 };
+
 
 // THIS FUNCTION WILL SHOW WHICH ANSWER IS RIGHT OR WRONG
 function rightOrWrong(oneQuestion, option) {
@@ -85,10 +88,8 @@ function rightOrWrong(oneQuestion, option) {
 
 //THIS ADDS EVENT LISTENER 
 options.forEach((option) => {
-  // option.addEventListener('click', rightOrWrong(listOfQuestions[currentQuestionIndex]), option)
   option.onclick = () => {
-    rightOrWrong(listOfQuestions[currentQuestionIndex], option)}
-    
+    rightOrWrong(listOfQuestions[currentQuestionIndex], option)}  
   })
 //     if (option.classList.contains("wrong")){
 //       option.classList.remove("wrong")
