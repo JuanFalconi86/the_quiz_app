@@ -34,6 +34,8 @@ header {
     background-color: rgb(6, 98, 168);
     color: white;
     text-align: center;
+    font-size: 20px;
+    font-weight: 400px;
 }
 
 .option {

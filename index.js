@@ -56,27 +56,44 @@ function showQuestion(question) {
 //THIS FUNCTION WILL LET GO TO THE NEXT QUESTION
 nextButton.onclick = () => {
   showQuestion(listOfQuestions[(currentQuestionIndex += 1)]);
+  
 };
 
 // THIS FUNCTION WILL SHOW WHICH ANSWER IS RIGHT OR WRONG
 function rightOrWrong(oneQuestion, option) {
-    
+  option.parentElement.style.pointerEvents = "none";
     let selectedAnswer = option.innerHTML;
     if (selectedAnswer === oneQuestion.correctAnswer) {
       option.classList.add("right");
+      score ++
       console.log("correct answer")
     } else {
       option.classList.add("wrong");
+      console.log('incrorrect')
   
-    }
+    } 
 }
+
+//THIS FUNCTION WILL SHOW WICH ANSWER IS WRONG
+// function wrongAnswer(oneQuestion, option) {
+//   let selectedAnswer = option.innerHTML;
+//   if (selectedAnswer !== oneQuestion.correctAnswer) {
+//     option.classList.add("wrong");
+//     console.log("incorrect answer");
+//   }
+// }
 
 //THIS ADDS EVENT LISTENER 
 options.forEach((option) => {
   // option.addEventListener('click', rightOrWrong(listOfQuestions[currentQuestionIndex]), option)
   option.onclick = () => {
     rightOrWrong(listOfQuestions[currentQuestionIndex], option)}
-  });
+    
+  })
+//     if (option.classList.contains("wrong")){
+//       option.classList.remove("wrong")
+//     }
+// });
 
 
 // function nextQuestion(question) {
