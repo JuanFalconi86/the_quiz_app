@@ -4,6 +4,7 @@ let scoreText = document.querySelector(".score"); //recupero la div de score, lu
 let score = 0;
 let nextButton = document.getElementById("next-question");
 let currentQuestionIndex = 0;
+let totalScore = []
 
 let listOfQuestions = [
   {
@@ -40,19 +41,14 @@ let listOfQuestions = [
 
 // questionDiv.innerHTML = question1.nameOfQuestion // testing if the question appears in the browser, in the DOM ==> it works
 
-// options.forEach((option, index,arr)  => {
-//     option.innerHTML = question1.answerOptions[index]
-//     option.style.cursor = "pointer"
-// })  // ==> mediante este loop, puedo pasar cada opcion de respuesta separadamente en las opciones HTML de respuesta. Ademas, le di un efecto de cursor encima.
-
 // THIS FUNCTION WILL SHOW A QUESTION
 function showQuestion(question) {
   questionDiv.innerHTML = question.nameOfQuestion;
   options.forEach((option, index, arr) => {
     option.innerHTML = question.answerOptions[index];
-    option.parentElement.style.pointerEvents = "auto";
-    option.classList.remove("right");
-    option.classList.remove("wrong")
+    option.parentElement.style.pointerEvents = "auto"; //here, I am "reseting" the pointer events so when I see the question, I can click everywhere
+    option.classList.remove("right"); //again, reseting the class, because in the previous question, there is a class applied (because someone clicked)
+    option.classList.remove("wrong") //the same that above
   });
 }
 
@@ -69,40 +65,35 @@ function rightOrWrong(oneQuestion, option) {
     if (selectedAnswer === oneQuestion.correctAnswer) {
       option.classList.add("right");
       score ++
-      console.log("correct answer")
+      alert("Correct answer!! Nicely done")
     } else {
       option.classList.add("wrong");
       console.log('incrorrect')
-  
+      alert(`Nop, wrong answer. The correct answer was ${oneQuestion.correctAnswer} `)
     } 
 }
 
-//THIS FUNCTION WILL SHOW WICH ANSWER IS WRONG
-// function wrongAnswer(oneQuestion, option) {
-//   let selectedAnswer = option.innerHTML;
-//   if (selectedAnswer !== oneQuestion.correctAnswer) {
-//     option.classList.add("wrong");
-//     console.log("incorrect answer");
-//   }
-// }
 
-//THIS ADDS EVENT LISTENER 
+//THIS ADDS EVENT LISTENER  THAT ENABLES TO CLICK AND SET THE RIGHT OR WRONG IN AN OPTION
 options.forEach((option) => {
   option.onclick = () => {
     rightOrWrong(listOfQuestions[currentQuestionIndex], option)}  
   })
-//     if (option.classList.contains("wrong")){
-//       option.classList.remove("wrong")
-//     }
-// });
 
-
-// function nextQuestion(question) {
-//   nextButton.onclick = showNewQuestion(question);
+  // UUNE AUTRE ALTERNATIVE
+// function onOptionClicked(event) {
+//   rightOrWrong(listOfQuestions[currentQuestionIndex], event.target);
+//   options.forEach((option, index, arr) => {
+//     option.removeEventListener("click", onOptionClicked);
+//   });
 // }
+
 
 showQuestion(listOfQuestions[currentQuestionIndex]);
 
+
+
+//THIS IS A SET TIMEOUT FUNCTION
 // setTimeout(() => {
 //     currentQuestionIndex++
 //     showQuestion(listOfQuestions[currentQuestionIndex]);
