@@ -90,7 +90,7 @@ let listOfQuestions = [
       "Cybersecurity Engineer",
       "Software Engineer",
       "UX Designer",
-      "Freelance",
+      "Ironhack TA",
     ],
     correctAnswer: "Cybersecurity Engineer",
   },
@@ -117,7 +117,7 @@ function checkIfLast(question) {
   if (listOfQuestions.indexOf(question) === listOfQuestions.length - 1) {
     replaceNextButton()
   }
-  
+
 }
 
 // THIS FUNCTION WILL REPLACE THE NEXT BUTTON FOR ANOTHER BUTTON
