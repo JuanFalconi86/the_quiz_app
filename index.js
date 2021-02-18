@@ -115,8 +115,8 @@ function showQuestion(question) {
 // THIS FUNCTION WILL CHECK IF THE QUESTION IS THE LAST ONE
 
 function checkIfLast(question) {
-  if (listOfQuestions.indexOf(question) === listOfQuestions.length - 1) {
-    replaceNextButton();
+  if (listOfQuestions.indexOf(question) === listOfQuestions.length - 1) {  //here, I am using the IndexOF in order to check that if the index is equal to the number of questions, that means we are in the last one
+    replaceNextButton(); // I am also calling the replaceNext button function, to hide it and show the "end" button
 
   } 
 }
@@ -128,11 +128,6 @@ function replaceNextButton() {
   endButton.style.visibility = "visible"
   thanksPage.style.visibility ="visible"
 }
-
-//THIS FUNCTION WILL LET GO TO THE NEXT QUESTION
-nextButton.onclick = () => {
-  showQuestion(listOfQuestions[(currentQuestionIndex += 1)]);
-};
 
 // THIS FUNCTION WILL SHOW WHICH ANSWER IS RIGHT OR WRONG
 function rightOrWrong(oneQuestion, option) {
@@ -151,7 +146,7 @@ function rightOrWrong(oneQuestion, option) {
   }
 }
 
-//TEST TO SHOWS YOUR RESULTS REGARDING THE SCORE YOU HAD
+//FUNCTION TO SHOW YOU A SPECIFIC MESSAGE DEPENDING ON THE SCORE YOU HAD
 function showFinalScore() {
 endButton.onclick = () => {
   if (score <= 4) {
@@ -172,15 +167,22 @@ options.forEach((option) => {
   };
 });
 
+//THIS EVENT LISTENER IN THE NEXT BUTTON WILL ACTIVATE THE GO TO THE NEXT QUESTION
+nextButton.onclick = () => {
+  showQuestion(listOfQuestions[(currentQuestionIndex += 1)]);
+};
 
-//CALLING THE FUNCTIONS TO WORK
+
+//CALLING THE FUNCTIONS TO MAKE WORK THE QUIZ
 showQuestion(listOfQuestions[currentQuestionIndex]);
 endButton.style.visibility = "hidden"
 
 showFinalScore(listOfQuestions[currentQuestionIndex]);
 thanksPage.style.visibility = "hidden";
 
-//THIS IS A SET TIMEOUT FUNCTION
+
+
+//THIS IS A SET TIMEOUT FUNCTION ==> wanted MAAAAYYYBEEE to set a timer, but lacked of time
 // setTimeout(() => {
 //     currentQuestionIndex++
 //     showQuestion(listOfQuestions[currentQuestionIndex]);
