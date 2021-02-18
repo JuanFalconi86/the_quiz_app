@@ -142,12 +142,11 @@ function rightOrWrong(oneQuestion, option) {
     option.classList.add("right");
     score++;
     scoreText.innerHTML = `Your score is of ${score} points`
-    alert("Correct answer!! Nicely done");
   } else {
     option.classList.add("wrong");
     console.log("incrorrect");
     alert(
-      `Nop, wrong answer. The correct answer was ${oneQuestion.correctAnswer} `
+      `Nop, wrong answer!! The correct answer was ${oneQuestion.correctAnswer} `
     );
   }
 }
