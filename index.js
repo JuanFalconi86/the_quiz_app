@@ -5,6 +5,8 @@ let score = 0;
 let nextButton = document.getElementById("next-question");
 let currentQuestionIndex = 0;
 let endButton = document.getElementById("end-button")
+// let showResults = document.querySelector(".show-results")
+let thanksPage = document.getElementById("thanks-page")
 
 let listOfQuestions = [
   {
@@ -101,7 +103,6 @@ let listOfQuestions = [
 // THIS FUNCTION WILL SHOW A QUESTION
 function showQuestion(question) {
   checkIfLast(question); //here I am calling a function that checks if the current question is the last one...
-
   questionDiv.innerHTML = question.nameOfQuestion; // here I am pushing the array's object value to the HTML to have it as a question
   options.forEach((option, index, arr) => {
     option.innerHTML = question.answerOptions[index]; // here, I am pushing the answer options into the HTML
@@ -115,9 +116,9 @@ function showQuestion(question) {
 
 function checkIfLast(question) {
   if (listOfQuestions.indexOf(question) === listOfQuestions.length - 1) {
-    replaceNextButton()
-  }
+    replaceNextButton();
 
+  } 
 }
 
 // THIS FUNCTION WILL REPLACE THE NEXT BUTTON FOR ANOTHER BUTTON
@@ -125,6 +126,7 @@ function checkIfLast(question) {
 function replaceNextButton() {
   nextButton.style.visibility = "hidden"
   endButton.style.visibility = "visible"
+  thanksPage.style.visibility ="visible"
 }
 
 //THIS FUNCTION WILL LET GO TO THE NEXT QUESTION
@@ -150,6 +152,20 @@ function rightOrWrong(oneQuestion, option) {
   }
 }
 
+//TEST TO SHOWS YOUR RESULTS REGARDING THE SCORE YOU HAD
+function showFinalScore() {
+endButton.onclick = () => {
+  if (score <= 4) {
+    alert ("Well, you are not that much into movies or series")  
+  }
+else if (score > 4 && score <=8) {
+  alert ("Not bad, you like watching stuff!")
+} else if (score > 8){
+  alert ("You're a proo!!! you do have a TV/Series huuuge knowledge! Wanna watch a series with me ?")
+}
+}
+}
+
 //THIS ADDS EVENT LISTENER  THAT ENABLES TO CLICK AND SET THE RIGHT OR WRONG IN AN OPTION
 options.forEach((option) => {
   option.onclick = () => {
@@ -162,6 +178,9 @@ options.forEach((option) => {
 showQuestion(listOfQuestions[currentQuestionIndex]);
 endButton.style.visibility = "hidden"
 
+showFinalScore(listOfQuestions[currentQuestionIndex]);
+thanksPage.style.visibility = "hidden";
+
 //THIS IS A SET TIMEOUT FUNCTION
 // setTimeout(() => {
 //     currentQuestionIndex++
@@ -169,4 +188,5 @@ endButton.style.visibility = "hidden"
 
 // }, 7000);
 
-console.log(listOfQuestions.length)
+
+
